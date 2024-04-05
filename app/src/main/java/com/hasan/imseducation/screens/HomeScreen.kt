@@ -48,11 +48,13 @@ import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -104,7 +106,7 @@ fun HomeScreen(navController: NavController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
+                .padding(20.dp),
             colors = CardDefaults.cardColors(
                 containerColor = blue1,
             )
@@ -148,7 +150,7 @@ fun HomeScreen(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.ibrat), contentDescription = "",
                         Modifier
-                            .size(90.dp)
+                            .size(96.dp)
                             .clip(
                                 CircleShape
                             ),
@@ -164,7 +166,7 @@ fun HomeScreen(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.ibrat), contentDescription = "",
                         Modifier
-                            .size(90.dp)
+                            .size(96.dp)
                             .clip(
                                 CircleShape
                             ),
@@ -180,7 +182,7 @@ fun HomeScreen(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.ibrat), contentDescription = "",
                         Modifier
-                            .size(90.dp)
+                            .size(96.dp)
                             .clip(
                                 CircleShape
                             ),
@@ -196,7 +198,7 @@ fun HomeScreen(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.ibrat), contentDescription = "",
                         Modifier
-                            .size(90.dp)
+                            .size(96.dp)
                             .clip(
                                 CircleShape
                             ),
@@ -210,8 +212,8 @@ fun HomeScreen(navController: NavController) {
             }
 
         }
-        Row {
-            Spacer(modifier = Modifier.width(8.dp))
+        Row ( verticalAlignment = Alignment.CenterVertically){
+            Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = "To'p o'qtuvchilar",
                 fontSize = 22.sp,
@@ -220,8 +222,8 @@ fun HomeScreen(navController: NavController) {
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
-        Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
-            Spacer(modifier = Modifier.width(8.dp))
+        Row(modifier = Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically) {
+            Spacer(modifier = Modifier.width(10.dp))
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Image(
                     painter = painterResource(id = R.drawable.img),
@@ -328,7 +330,67 @@ fun HomeScreen(navController: NavController) {
             }
 
 
+        }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = blue1
+            )
+        ) {
+            Row(
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = blue1
+                    )
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img_2),
+                        contentDescription = "", modifier = Modifier
+//                    .padding(vertical = 22.dp, horizontal = 12.dp)
+                            .height(110.dp)
+                            .width(140.dp)
+                            .clip(RoundedCornerShape(percent = 14))
+                            .clickable { },
+                        contentScale = ContentScale.Crop
+                    )
+                }
 
+                Column(verticalArrangement = Arrangement.Center) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(text = "7-sinf matematika", fontSize = 22.sp)
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Row(verticalAlignment = Alignment.Bottom) {
+                        Text(text = "10 $", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "15 $",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            style = TextStyle(textDecoration = TextDecoration.LineThrough)
+                        )
+                    }
+                    Row (verticalAlignment = Alignment.CenterVertically) {
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.star_icon),
+                            contentDescription = "", tint = Color.Yellow,
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(text = "5.0", fontSize =16.sp, fontWeight = FontWeight.Bold)
+
+                    }
+
+                }
+            }
         }
 
     }
