@@ -20,9 +20,7 @@ fun NavGraph (){
         composable(route = Screens.Home.route){
             HomeScreen(navController)
        }
-        composable(route = Screens.Chat.route){
-         Chat(navController)
-        }
+
         composable(route = Screens.Saved.route){
            Saved(navController)
         }
