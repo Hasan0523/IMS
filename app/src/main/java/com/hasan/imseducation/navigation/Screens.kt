@@ -2,9 +2,10 @@ package com.hasan.imseducation.navigation
 
 sealed class Screens(val route:String) {
 
-    object Home : Screens("Home")
-    object Chat : Screens("Chat")
-    object Saved : Screens("Saved")
-    object Test : Screens("Test")
-    object Profile : Screens("Profile")
+    data object Home : Screens("Home")
+    data object Chat : Screens("Chat")
+    data object Saved : Screens("Saved")
+    data object SplashScreen : Screens("Splash")
+    data object Test : Screens("Test")
+    data object Profile : Screens("Profile")
 }

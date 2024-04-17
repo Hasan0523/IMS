@@ -8,6 +8,7 @@ import com.hasan.imseducation.screens.Chat
 import com.hasan.imseducation.screens.HomeScreen
 import com.hasan.imseducation.screens.Profile
 import com.hasan.imseducation.screens.Saved
+import com.hasan.imseducation.screens.SplashScreen
 import com.hasan.imseducation.screens.Test
 
 @Composable
@@ -17,10 +18,16 @@ fun NavGraph (){
         navController = navController,
         startDestination = Screens.Home.route)
     {
+
         composable(route = Screens.Home.route){
             HomeScreen(navController)
        }
-
+        composable(route = Screens.SplashScreen.route){
+         SplashScreen(navController)
+        }
+        composable(route = Screens.Chat.route){
+            Chat(navController)
+        }
         composable(route = Screens.Saved.route){
            Saved(navController)
         }
