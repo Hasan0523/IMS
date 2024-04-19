@@ -414,7 +414,8 @@ fun HomeScreen(navController: NavController) {
                             Spacer(modifier = Modifier.width(16.dp))
                             Icon(
                                 painter = painterResource(id = R.drawable.bookmark_svgrepo_com__1_),
-                                contentDescription = "", tint = Black,
+                                contentDescription = "",
+                                tint = Black,
                                 modifier = Modifier.size(32.dp)
                             )
 

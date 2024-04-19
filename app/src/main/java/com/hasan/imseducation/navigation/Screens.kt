@@ -8,4 +8,5 @@ sealed class Screens(val route:String) {
     data object SplashScreen : Screens("Splash")
     data object Test : Screens("Test")
     data object Profile : Screens("Profile")
+    data object ChatScreen: Screens("ChatScreen")
 }

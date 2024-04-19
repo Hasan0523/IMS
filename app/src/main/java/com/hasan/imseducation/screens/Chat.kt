@@ -1,6 +1,5 @@
 package com.hasan.imseducation.screens
 
-import android.widget.Toast
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -11,18 +10,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
@@ -73,6 +69,7 @@ import com.hasan.imseducation.R
 import com.hasan.imseducation.api.SharedHelper
 import com.hasan.imseducation.model.Message
 import com.hasan.imseducation.model.User
+import com.hasan.imseducation.navigation.Screens
 import com.hasan.imseducation.ui.theme.Background
 import com.hasan.imseducation.ui.theme.BlueLight
 import com.hasan.imseducation.ui.theme.Gray
@@ -89,7 +86,36 @@ fun PreviewChat() {
 fun Chat(navController: NavController) {
 
     LocalContext.current
-    val chats = remember { mutableStateListOf<User>() }
+    val chats = remember {
+        mutableStateListOf<User>(
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+            User("Hasan", "12345678", "Hasan", "Bo'ronov", "asdasdsad", "1234"),
+        )
+    }
     remember { mutableStateListOf<User>() }
     val search = remember { mutableStateOf("") }
 
@@ -192,43 +218,40 @@ fun TopBar(search: MutableState<String>, navController: NavController) {
 }
 
 @Composable
-fun LazyItem(index: Int,chat: User, navController: NavController) {
+fun LazyItem(index: Int, user: User, navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 6.dp)
-            .clickable { }, verticalAlignment = Alignment.CenterVertically
+            .clickable { navController.navigate(Screens.ChatScreen.route) }, verticalAlignment = Alignment.CenterVertically
     ) {
-      Card(modifier = Modifier
-          .fillMaxWidth()
-          .padding(12.dp),
-          colors = CardDefaults.cardColors(
-              containerColor = blue1)) {
-          Image(
-              painter = painterResource(id = R.drawable.img),
-              contentDescription = "",
-              contentScale = ContentScale.FillHeight,
-              modifier = Modifier
-                  .size(60.dp)
-                  .clip(CircleShape)
-          )
-          Column(
-              verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.Start,
-              modifier = Modifier.weight(1f)
-          ) {
-              Text(
-                  text = chat.firstName + " " + chat.lastName,
-                  textAlign = TextAlign.Center,
-                  color = Color.Black
-              )
-              Text(
-                  text = chat.username!!,
-                  textAlign = TextAlign.Center,
-                  color = Color.Gray,
-                  fontSize = 12.sp
-              )
-          }
-      }
+
+
+            Image(
+                painter = painterResource(id = R.drawable.img),
+                contentDescription = "",
+                contentScale = ContentScale.FillHeight,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .size(60.dp)
+                    .clip(CircleShape)
+            )
+        Column(
+            verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.Start,
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(
+                text = user.firstName + " " + user.lastName,
+                textAlign = TextAlign.Center,
+                color = Color.Black
+            )
+            Text(
+                text = user.username!!,
+                textAlign = TextAlign.Center,
+                color = Color.Gray,
+                fontSize = 12.sp
+            )
+        }
 
     }
 }
@@ -239,25 +262,24 @@ fun Chats(navController: NavController, chats: SnapshotStateList<User>) {
         Modifier
             .background(Color.White, RoundedCornerShape(16.dp))
     ) {
-        items(10) {
-            LazyItem(it, chats[it],navController)
+        items(chats.size) {
+            LazyItem(it, chats[it], navController)
         }
     }
 }
 
 @Composable
-fun ChatScreen(navController: NavController, key:String){
-    val user = remember { mutableStateOf(User("wedqwf", "wefweq", "wefwe", "efwe", "ewfwe", "efwef")) }
+fun ChatScreen(navController: NavController) {
+    val user = remember { mutableStateOf(User("", "", "", "", "", "")) }
     val messages = remember { mutableStateListOf<Message>() }
     val context = LocalContext.current
 
-    Column(modifier = Modifier.background(Background)){
+    Column(modifier = Modifier.background(Background)) {
         ChatTopBar(user)
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
-                .fillMaxWidth()
-            , horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
             items(messages.size) { index ->
@@ -269,6 +291,7 @@ fun ChatScreen(navController: NavController, key:String){
 
     }
 }
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MessageItem(
@@ -294,7 +317,7 @@ fun MessageItem(
 //                    }
                 ),
             shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.cardColors(if (fromMe) BlueLight else Gray)
+            colors = CardDefaults.cardColors(if (fromMe) blue1 else Gray)
         ) {
             Text(
                 text = message.text!!,
@@ -311,20 +334,34 @@ fun MessageItem(
 fun ChatTopBar(user: MutableState<User>) {
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
-    Row (modifier = Modifier.padding(12.dp),
-        horizontalArrangement = Arrangement.Center){
+    Row(
+        modifier = Modifier.padding(12.dp),
+        horizontalArrangement = Arrangement.Center
+    ) {
         IconButton(onClick = { backDispatcher?.onBackPressed() }) {
             Icon(Icons.Rounded.ArrowBack, "", Modifier.size(40.dp))
         }
-        Column (verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally,
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.weight(1f)
-        ){
-            Text(text = user.value.firstName + " " + user.value.lastName, textAlign = TextAlign.Center, color = Color.Black)
-            Text(text = user.value.username!!, textAlign = TextAlign.Center, color = Color.Gray, fontSize = 12.sp)
+        ) {
+            Text(
+                text = user.value.firstName + " " + user.value.lastName,
+                textAlign = TextAlign.Center,
+                color = Color.Black
+            )
+            Text(
+                text = user.value.username!!,
+                textAlign = TextAlign.Center,
+                color = Color.Gray,
+                fontSize = 12.sp
+            )
         }
 
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EnterMessage(
@@ -332,7 +369,7 @@ fun EnterMessage(
 ) {
     val context = LocalContext.current
     val message = remember {
-        mutableStateOf("sdfvdfverbgver")
+        mutableStateOf("")
     }
     val focusManager = LocalFocusManager.current
     val focusRequester = remember { FocusRequester() }
@@ -348,7 +385,7 @@ fun EnterMessage(
         colors = TextFieldDefaults.outlinedTextFieldColors(
             Color.Black,
             containerColor = Color.White,
-            focusedBorderColor = BlueLight,
+            focusedBorderColor = blue1,
             unfocusedBorderColor = Color.Transparent
         ),
         trailingIcon = {
@@ -359,7 +396,7 @@ fun EnterMessage(
                 Icon(
                     Icons.Rounded.Send,
                     contentDescription = "",
-                    tint = if (message.value.isNotEmpty()) BlueLight else Color.Gray
+                    tint = if (message.value.isNotEmpty()) blue1 else Color.Gray
                 )
             }
         },
@@ -372,6 +409,7 @@ fun EnterMessage(
 
     )
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChangePasswordScreen() {
@@ -382,7 +420,7 @@ fun ChangePasswordScreen() {
     val passwordOld = remember {
         mutableStateOf("")
     }
-    Column (horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(
             Modifier
                 .fillMaxWidth()

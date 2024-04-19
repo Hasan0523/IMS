@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.screens.Chat
+import com.hasan.imseducation.screens.ChatScreen
 import com.hasan.imseducation.screens.HomeScreen
 import com.hasan.imseducation.screens.Profile
 import com.hasan.imseducation.screens.Saved
@@ -36,6 +37,9 @@ fun NavGraph (){
         }
         composable(route = Screens.Profile.route){
             Profile(navController)
+        }
+        composable(route = Screens.ChatScreen.route){
+           ChatScreen(navController)
         }
     }
 }
