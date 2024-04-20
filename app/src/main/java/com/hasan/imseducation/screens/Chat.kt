@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -55,8 +56,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -71,8 +74,8 @@ import com.hasan.imseducation.model.Message
 import com.hasan.imseducation.model.User
 import com.hasan.imseducation.navigation.Screens
 import com.hasan.imseducation.ui.theme.Background
-import com.hasan.imseducation.ui.theme.BlueLight
 import com.hasan.imseducation.ui.theme.Gray
+import com.hasan.imseducation.ui.theme.Topbar
 import com.hasan.imseducation.ui.theme.blue
 import com.hasan.imseducation.ui.theme.blue1
 
@@ -153,7 +156,7 @@ fun TopBar(search: MutableState<String>, navController: NavController) {
             contentDescription = "",
             contentScale = ContentScale.FillHeight,
             modifier = Modifier
-                .size(70.dp)
+                .size(60.dp)
                 .clip(CircleShape)
                 .clickable { }
 
@@ -223,19 +226,21 @@ fun LazyItem(index: Int, user: User, navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 6.dp)
-            .clickable { navController.navigate(Screens.ChatScreen.route) }, verticalAlignment = Alignment.CenterVertically
+            .clickable { navController.navigate(Screens.ChatScreen.route) },
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
 
-            Image(
-                painter = painterResource(id = R.drawable.img),
-                contentDescription = "",
-                contentScale = ContentScale.FillHeight,
-                modifier = Modifier
-                    .padding(8.dp)
-                    .size(60.dp)
-                    .clip(CircleShape)
-            )
+        Image(
+            painter = painterResource(id = R.drawable.img),
+            contentDescription = "",
+            contentScale = ContentScale.FillHeight,
+            modifier = Modifier
+                .padding(8.dp)
+                .size(50.dp)
+                .clip(CircleShape)
+        )
+        Spacer(modifier = Modifier.width(6.dp))
         Column(
             verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.Start,
             modifier = Modifier.weight(1f)
@@ -274,7 +279,7 @@ fun ChatScreen(navController: NavController) {
     val messages = remember { mutableStateListOf<Message>() }
     val context = LocalContext.current
 
-    Column(modifier = Modifier.background(Background)) {
+    Column(modifier = Modifier.background(blue1)) {
         ChatTopBar(user)
         LazyColumn(
             modifier = Modifier
@@ -287,7 +292,7 @@ fun ChatScreen(navController: NavController) {
             }
         }
 
-        if (user.value.firstName!!.isNotEmpty()) EnterMessage(userKey = user.value.key!!)
+         EnterMessage(userKey = user.value.key!!)
 
     }
 }
@@ -335,30 +340,62 @@ fun ChatTopBar(user: MutableState<User>) {
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
     Row(
-        modifier = Modifier.padding(12.dp),
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier
+            .background(Topbar)
+            .padding(vertical = 5.dp),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(onClick = { backDispatcher?.onBackPressed() }) {
-            Icon(Icons.Rounded.ArrowBack, "", Modifier.size(40.dp))
+            Icon(
+                Icons.Rounded.ArrowBack,
+                contentDescription = "ortga",
+                Modifier.size(24.dp),
+                colorResource(id = R.color.white)
+            )
         }
+        Image(painter = painterResource(id = R.drawable.img),
+            contentDescription = "",
+            contentScale = ContentScale.FillHeight,
+            modifier = Modifier
+                .size(60.dp)
+                .padding(4.dp)
+                .clip(CircleShape)
+                .clickable { })
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.weight(1f)
         ) {
-            Text(
-                text = user.value.firstName + " " + user.value.lastName,
-                textAlign = TextAlign.Center,
-                color = Color.Black
-            )
-            Text(
-                text = user.value.username!!,
-                textAlign = TextAlign.Center,
-                color = Color.Gray,
-                fontSize = 12.sp
-            )
-        }
 
+            Text(
+                text = "User",
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                fontSize = 22.sp
+            )
+            Text(
+                text = "@user",
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                fontSize = 16.sp
+            )
+
+        }
+        Icon(
+            painter = painterResource(id = R.drawable.phone),
+            contentDescription = "call",
+            modifier = Modifier
+                .size(26.dp), colorResource(id = R.color.white)
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Icon(
+            painter = painterResource(id = R.drawable.menu_vertical),
+            contentDescription = "call",
+            modifier = Modifier.size(26.dp), colorResource(id = R.color.white)
+        )
+        Spacer(modifier = Modifier.width(6.dp))
     }
 }
 
@@ -396,7 +433,7 @@ fun EnterMessage(
                 Icon(
                     Icons.Rounded.Send,
                     contentDescription = "",
-                    tint = if (message.value.isNotEmpty()) blue1 else Color.Gray
+                    tint = if (message.value.isNotEmpty()) Topbar else Color.Black
                 )
             }
         },

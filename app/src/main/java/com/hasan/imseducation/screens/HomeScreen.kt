@@ -115,7 +115,7 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(20.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = blue1,
+                    containerColor = White,
                 )
             ) {
                 Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
@@ -350,7 +350,7 @@ fun HomeScreen(navController: NavController) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(12.dp),
+                    .padding(8.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = blue1
                 )
@@ -428,7 +428,7 @@ fun HomeScreen(navController: NavController) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(12.dp),
+                    .padding(8.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = blue1
                 )
