@@ -1,9 +1,11 @@
 package com.hasan.imseducation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.hasan.imseducation.screens.Chat
 import com.hasan.imseducation.screens.ChatScreen
 import com.hasan.imseducation.screens.HomeScreen
@@ -20,7 +22,7 @@ fun NavGraph (){
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screens.SplashScreen.route)
+        startDestination = Screens.Home.route)
     {
 
         composable(route = Screens.Home.route){
@@ -44,8 +46,13 @@ fun NavGraph (){
         composable(route = Screens.ChatScreen.route){
            ChatScreen(navController)
         }
-        composable(route = Screens.TestFun.route){
-         TestFun(navController)
+        composable(route = Screens.TestFun.route, arguments = listOf(
+            navArgument("id"){
+                type = NavType.IntType
+            }
+        )){
+            val id = it.arguments?.getInt("id")!!
+         TestFun(navController, id)
         }
         composable(route = Screens.Login.route){
             LoginScreen(navController)

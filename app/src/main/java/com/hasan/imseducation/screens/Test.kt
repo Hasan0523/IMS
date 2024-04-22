@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -29,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
+import com.hasan.imseducation.model.Subject
 import com.hasan.imseducation.navigation.Screens
 
 @Preview
@@ -48,7 +51,6 @@ fun Test(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
                 .background(Color.White)
                 .padding(it),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -63,67 +65,22 @@ fun Test(navController: NavController) {
             }
             Text(text = "O'z ustingizda ishlang", fontSize = 16.sp)
             Spacer(modifier = Modifier.height(18.dp))
-            Button(
-                onClick = {navController.navigate(Screens.TestFun.route) },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Matematika", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Fizika", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Informatika", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Roboto texnika", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Ingilis tili", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Rus tili", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Arab tili", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-            ) {
-                Text(text = "Nemis tili", fontSize = 18.sp)
+            LazyColumn {
+                items(Subject.getAllSubjects()){
+                    Button(
+                        onClick = {navController.navigate("TestFun/${Subject.getSubjectId(it)}") },
+                        colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
+                    ) {
+                        Text(text = it, fontSize = 18.sp)
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-fun TestFun(navController: NavController) {
+fun TestFun(navController: NavController, subjectId: Int) {
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     Column(
         modifier = Modifier
@@ -140,7 +97,7 @@ fun TestFun(navController: NavController) {
                 )
             }
             Spacer(modifier = Modifier.width(40.dp))
-            Text(text = "Matematika", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            Text(text = Subject.getSubject(subjectId), fontSize = 24.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.width(40.dp))
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
