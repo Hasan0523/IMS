@@ -30,3 +30,9 @@ val TextF = Color(0xFFB7E0FE)
 val Placeholder = Color(0xFF6D6D6D)
 
 val ButtonColor = Color(0xFF44AFFC)
+
+val MainBg = Color(0xFFFCF5ED)
+val TextColor = Color(0xFF672701)
+val OptionBg = Color(0xFFEC8945)
+val ErrorBg = Color(0xFF860328)
+val Green = Color(0xFF2F9A6E)
