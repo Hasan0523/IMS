@@ -85,7 +85,7 @@ fun HomeScreen(navController: NavController) {
                 .background(Color.White)
                 .verticalScroll(rememberScrollState())
         ) {
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,

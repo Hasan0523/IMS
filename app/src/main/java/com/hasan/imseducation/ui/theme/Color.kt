@@ -22,4 +22,11 @@ val Brown= Color(0xFF000000)
 val bg= Color(0xFFFFFFFF)
 val Gray = Color(0xFFADADAD)
 val Topbar= Color(0xFF42B4FF)
+val Button= Color(0xFF00668A)
 
+val bgM = Color(0xFFFFF7FC)
+val textColor = Color(0xFF5755FE)
+val TextF = Color(0xFFB7E0FE)
+val Placeholder = Color(0xFF6D6D6D)
+
+val ButtonColor = Color(0xFF44AFFC)

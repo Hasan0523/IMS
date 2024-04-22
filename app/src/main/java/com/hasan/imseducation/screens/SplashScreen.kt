@@ -162,7 +162,7 @@ fun SplashScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 if (index == 2) {
-                    Button(modifier = Modifier.width(200.dp),onClick = { navController.navigate(Screens.Home.route)}, colors = ButtonDefaults.buttonColors(containerColor = Purple40), shape = RoundedCornerShape(10.dp)) {
+                    Button(modifier = Modifier.width(200.dp),onClick = { navController.navigate(Screens.Login.route)}, colors = ButtonDefaults.buttonColors(containerColor = Purple40), shape = RoundedCornerShape(10.dp)) {
                         Text(text = "Kirish", fontFamily = normal, fontSize = 22.sp, color = Color.White)
                     }
                 }
