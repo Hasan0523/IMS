@@ -65,6 +65,7 @@ import com.hasan.imseducation.R
 import com.hasan.imseducation.ui.theme.bcolor
 import com.hasan.imseducation.ui.theme.blue
 import com.hasan.imseducation.ui.theme.blue1
+import com.hasan.imseducation.ui.theme.blue2
 
 
 @Preview
@@ -109,6 +110,10 @@ fun HomeScreen(navController: NavController) {
                     Modifier.size(40.dp),
                 )
                 Spacer(modifier = Modifier.width(10.dp))
+            }
+            Row {
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(text = "Boshqa ilovalar", fontSize = 20.sp, )
             }
             Card(
                 modifier = Modifier
@@ -352,7 +357,7 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(8.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = blue1
+                    containerColor = blue2
                 )
             ) {
                 Row(
@@ -430,7 +435,7 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(8.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = blue1
+                    containerColor = blue2
                 )
             ) {
                 Row(

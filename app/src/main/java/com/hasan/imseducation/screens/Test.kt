@@ -44,10 +44,6 @@ import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
 import com.hasan.imseducation.model.Subject
 import com.hasan.imseducation.navigation.Screens
-import com.hasan.imseducation.ui.theme.Green
-import com.hasan.imseducation.ui.theme.MainBg
-import com.hasan.imseducation.ui.theme.OptionBg
-import com.hasan.imseducation.ui.theme.TextColor
 
 @Preview
 @Composable

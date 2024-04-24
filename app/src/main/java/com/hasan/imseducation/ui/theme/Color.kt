@@ -14,6 +14,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val blue= Color(0xFFD5EDFF)
 val blue1= Color(0xFFC6E5FD)
+val blue2= Color(0xFFD6EDFF)
 val BlueLight= Color(0xFF96D1FF)
 val Background = Color(0xFF82D8FF)
 
@@ -25,14 +26,10 @@ val Topbar= Color(0xFF42B4FF)
 val Button= Color(0xFF00668A)
 
 val bgM = Color(0xFFFFF7FC)
-val textColor = Color(0xFF5755FE)
+val textColor = Color(0xFF000000)
 val TextF = Color(0xFFB7E0FE)
 val Placeholder = Color(0xFF6D6D6D)
 
 val ButtonColor = Color(0xFF44AFFC)
+val Green = Color(0xFF80FF00)
 
-val MainBg = Color(0xFFFCF5ED)
-val TextColor = Color(0xFF672701)
-val OptionBg = Color(0xFFEC8945)
-val ErrorBg = Color(0xFF860328)
-val Green = Color(0xFF2F9A6E)
