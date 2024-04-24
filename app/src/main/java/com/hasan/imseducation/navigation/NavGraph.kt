@@ -16,6 +16,7 @@ import com.hasan.imseducation.screens.SignUp
 import com.hasan.imseducation.screens.SplashScreen
 import com.hasan.imseducation.screens.Test
 import com.hasan.imseducation.screens.TestFun
+import com.hasan.imseducation.screens.TestQues
 
 @Composable
 fun NavGraph (){
@@ -53,6 +54,9 @@ fun NavGraph (){
         )){
             val id = it.arguments?.getInt("id")!!
          TestFun(navController, id)
+        }
+        composable(route = Screens.TestQues.route){
+           TestQues(navController)
         }
         composable(route = Screens.Login.route){
             LoginScreen(navController)

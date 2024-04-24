@@ -32,4 +32,5 @@ val Placeholder = Color(0xFF6D6D6D)
 
 val ButtonColor = Color(0xFF44AFFC)
 val Green = Color(0xFF80FF00)
+val OptionBg = Color(0xFFFF8B8B)
 

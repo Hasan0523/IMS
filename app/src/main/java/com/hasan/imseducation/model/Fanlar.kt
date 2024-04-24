@@ -6,6 +6,7 @@ class Subject private constructor() {
         fun getSubject(id: Int): String {
             return subjects[id]
         }
+
         fun getSubjectId(subject:String): Int {
             return subjects.indexOf(subject)
         }
@@ -16,3 +17,10 @@ class Subject private constructor() {
     }
 
 }
+
+class Ques private constructor() {
+    companion object {
+        private val Ques= listOf("1-daraja", "2-daraja", "3-daraja")
+
+
+}}

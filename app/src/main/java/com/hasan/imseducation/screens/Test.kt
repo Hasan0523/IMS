@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -44,11 +45,13 @@ import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
 import com.hasan.imseducation.model.Subject
 import com.hasan.imseducation.navigation.Screens
+import com.hasan.imseducation.ui.theme.Green
+import com.hasan.imseducation.ui.theme.OptionBg
 
 @Preview
 @Composable
 fun PreviewTest() {
-    Test(navController = rememberNavController())
+   TestQues(navController = rememberNavController())
 }
 
 @Composable
@@ -108,7 +111,11 @@ fun TestFun(navController: NavController, subjectId: Int) {
                 )
             }
             Spacer(modifier = Modifier.width(40.dp))
-            Text(text = Subject.getSubject(subjectId), fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            Text(
+                text = Subject.getSubject(subjectId),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
             Spacer(modifier = Modifier.width(40.dp))
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
@@ -118,99 +125,75 @@ fun TestFun(navController: NavController, subjectId: Int) {
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "1-daraja", fontSize = 18.sp)
-        }
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "2-daraja", fontSize = 18.sp)
-        }
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "3-daraja", fontSize = 18.sp)
+        LazyColumn {
+            items(Subject.getAllSubjects()){
+                Button(
+                    onClick = {navController.navigate("TestQues/${Subject.getSubjectId(it)}") },
+                    colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
+                ) {
+                    Text(text = it, fontSize = 18.sp)
+                }
+            }
         }
 
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "4-daraja", fontSize = 18.sp)
-        }
+    }
+}
+@Composable
+fun TestQues(navController: NavController) {
+    val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+    Column (
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally){
+        Spacer(modifier = Modifier.height(10    .dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.arrow),
+                    contentDescription = "Ortga", tint = Color.Black, modifier = Modifier.size(35.dp)
+                )
+            }
+           Spacer(modifier = Modifier.width(60.dp))
+            Text(text = "1-daraja", fontSize = 34.sp)
+            Spacer(modifier = Modifier.width(60.dp))
+            IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.menu_vertical),
+                    contentDescription = "menu", tint = Color.Black, modifier = Modifier.size(35.dp)
+                )
+            }
 
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "5-daraja", fontSize = 18.sp)
         }
-
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "6-daraja", fontSize = 18.sp)
+    }
+    val  progress = 0.05f
+    Row (verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+        Spacer(modifier = Modifier.width(6.dp))
+        Text(text = "1", fontSize = 28.sp,fontWeight = FontWeight.Bold , color = Color.Green)
+        Spacer(modifier = Modifier.width(2.dp))
+        Text(text = "/", fontSize = 24.sp)
+        Spacer(modifier = Modifier.width(2.dp))
+        Text(text = "20", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.width(10.dp))
+        LinearProgressIndicator(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(10.dp),
+            color = Green,
+            progress =progress ,
+            trackColor = OptionBg,
+            strokeCap = StrokeCap.Round
+        )
+        Spacer(modifier = Modifier.width(10.dp))
+        IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+            Icon(
+                painter = painterResource(id = R.drawable.time_icon),
+                contentDescription = "time", tint = Color.Green, modifier = Modifier.size(35.dp)
+            )
         }
-
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "7-daraja", fontSize = 18.sp)
-        }
-
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "8-daraja", fontSize = 18.sp)
-        }
-
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "9-daraja", fontSize = 18.sp)
-        }
-
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "10-daraja", fontSize = 18.sp)
-        }
-
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "11-daraja", fontSize = 18.sp)
-        }
-        Spacer(modifier = Modifier.height(6.dp))
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
-        ) {
-            Text(text = "12-daraja", fontSize = 18.sp)
-        }
-
-
+        Spacer(modifier = Modifier.width(10.dp))
+        Text(text = "10:00", fontSize = 24.sp)
     }
 }
 
