@@ -2,9 +2,7 @@ package com.hasan.imseducation.screens
 
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,20 +14,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,15 +37,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
+import com.hasan.imseducation.model.Ques
 import com.hasan.imseducation.model.Subject
-import com.hasan.imseducation.navigation.Screens
+import com.hasan.imseducation.model.Test
 import com.hasan.imseducation.ui.theme.Green
 import com.hasan.imseducation.ui.theme.OptionBg
 
 @Preview
 @Composable
 fun PreviewTest() {
-   TestQues(navController = rememberNavController())
+    TestQues(navController = rememberNavController(), 2)
 }
 
 @Composable
@@ -80,10 +75,11 @@ fun Test(navController: NavController) {
             Text(text = "O'z ustingizda ishlang", fontSize = 16.sp)
             Spacer(modifier = Modifier.height(18.dp))
             LazyColumn {
-                items(Subject.getAllSubjects()){
+                items(Subject.getAllSubjects()) {
                     Button(
-                        onClick = {navController.navigate("TestFun/${Subject.getSubjectId(it)}") },
-                        colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
+                        onClick = { navController.navigate("TestFun/${Subject.getSubjectId(it)}") },
+                        colors = ButtonDefaults.buttonColors(Color.Blue),
+                        modifier = Modifier.width(300.dp)
                     ) {
                         Text(text = it, fontSize = 18.sp)
                     }
@@ -94,12 +90,11 @@ fun Test(navController: NavController) {
 }
 
 @Composable
-fun TestFun(navController: NavController, subjectId: Int) {
+fun TestFun(navController: NavController, quesId: Int) {
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -112,7 +107,7 @@ fun TestFun(navController: NavController, subjectId: Int) {
             }
             Spacer(modifier = Modifier.width(40.dp))
             Text(
-                text = Subject.getSubject(subjectId),
+                text = Ques.getQues(quesId),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -126,10 +121,11 @@ fun TestFun(navController: NavController, subjectId: Int) {
         }
         Spacer(modifier = Modifier.height(16.dp))
         LazyColumn {
-            items(Subject.getAllSubjects()){
+            items(Ques.getAllQues()) {
                 Button(
-                    onClick = {navController.navigate("TestQues/${Subject.getSubjectId(it)}") },
-                    colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)
+                    onClick = { navController.navigate("TestQues/${Ques.getQuesId(it)}") },
+                    colors = ButtonDefaults.buttonColors(Color.Blue),
+                    modifier = Modifier.width(300.dp)
                 ) {
                     Text(text = it, fontSize = 18.sp)
                 }
@@ -138,24 +134,33 @@ fun TestFun(navController: NavController, subjectId: Int) {
 
     }
 }
+
 @Composable
-fun TestQues(navController: NavController) {
+fun TestQues(navController: NavController, quesid: Int) {
+    val test = Test(
+        "Fizikani birinchi bo'lib harbiy sohada qo'llagan inson qayerlik bo'lgan",
+        listOf("Amerika", "Germaniya", "Rim", "Sitsilya"),
+        "to'g'ri"
+    )
+    val testNumber = remember { mutableStateOf(1) }
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
             .background(Color.White),
-        horizontalAlignment = Alignment.CenterHorizontally){
-        Spacer(modifier = Modifier.height(10    .dp))
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.height(10.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+            IconButton(onClick = { }) {
                 Icon(
                     painter = painterResource(id = R.drawable.arrow),
-                    contentDescription = "Ortga", tint = Color.Black, modifier = Modifier.size(35.dp)
+                    contentDescription = "Ortga",
+                    tint = Color.Black,
+                    modifier = Modifier.size(35.dp)
                 )
             }
-           Spacer(modifier = Modifier.width(60.dp))
+            Spacer(modifier = Modifier.width(60.dp))
             Text(text = "1-daraja", fontSize = 34.sp)
             Spacer(modifier = Modifier.width(60.dp))
             IconButton(onClick = { backDispatcher?.onBackPressed() }) {
@@ -164,37 +169,79 @@ fun TestQues(navController: NavController) {
                     contentDescription = "menu", tint = Color.Black, modifier = Modifier.size(35.dp)
                 )
             }
-
         }
-    }
-    val  progress = 0.05f
-    Row (verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
-        Spacer(modifier = Modifier.width(6.dp))
-        Text(text = "1", fontSize = 28.sp,fontWeight = FontWeight.Bold , color = Color.Green)
-        Spacer(modifier = Modifier.width(2.dp))
-        Text(text = "/", fontSize = 24.sp)
-        Spacer(modifier = Modifier.width(2.dp))
-        Text(text = "20", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.width(10.dp))
-        LinearProgressIndicator(
+        val progress = 0.05f
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Spacer(modifier = Modifier.width(6.dp))
+            Text(text = "1", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color.Green)
+            Spacer(modifier = Modifier.width(2.dp))
+            Text(text = "/", fontSize = 24.sp)
+            Spacer(modifier = Modifier.width(2.dp))
+            Text(text = "20", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.width(10.dp))
+            LinearProgressIndicator(
+                modifier = Modifier
+                    .weight(1f)
+                    .height(10.dp),
+                color = Green,
+                progress = progress,
+                trackColor = OptionBg,
+                strokeCap = StrokeCap.Round
+            )
+            Spacer(modifier = Modifier.width(0.dp))
+            IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.time_icon),
+                    contentDescription = "time", tint = Color.Green, modifier = Modifier.size(30.dp)
+                )
+            }
+            Spacer(modifier = Modifier.width(0.dp))
+            Text(text = "10:00", fontSize = 20.sp)
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = testNumber.value.toString(),
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(text = " - masala", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+        }
+        Text(
+            text = test.question,
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp),
-            color = Green,
-            progress =progress ,
-            trackColor = OptionBg,
-            strokeCap = StrokeCap.Round
+                .padding(start = 8.dp, end = 8.dp),
+            textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.width(10.dp))
-        IconButton(onClick = { backDispatcher?.onBackPressed() }) {
-            Icon(
-                painter = painterResource(id = R.drawable.time_icon),
-                contentDescription = "time", tint = Color.Green, modifier = Modifier.size(35.dp)
-            )
+        Spacer(modifier = Modifier.height(16.dp))
+        LazyColumn {
+
+            items(test.vars) {
+
+                Button(
+                    onClick = { testNumber.value++ }, modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 30.dp, end = 30.dp)
+                ) {
+                    Row (verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = "A)", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = it, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    }
+                }
+            }
         }
-        Spacer(modifier = Modifier.width(10.dp))
-        Text(text = "10:00", fontSize = 24.sp)
     }
+
 }
 
 

@@ -13,7 +13,7 @@ sealed class Screens(val route: String) {
 
     data object Test : Screens("Test")
     data object TestFun : Screens("TestFun/{id}")
-    data object TestQues : Screens("TestQues")
+    data object TestQues : Screens("TestQues/{id}")
     data object Profile : Screens("Profile")
 
 

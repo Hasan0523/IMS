@@ -20,7 +20,19 @@ class Subject private constructor() {
 
 class Ques private constructor() {
     companion object {
-        private val Ques= listOf("1-daraja", "2-daraja", "3-daraja")
+        private val ques = listOf("1-daraja", "2-daraja", "3-daraja")
+        fun getQues(id: Int): String {
+            return ques[id]
+        }
 
+        fun getQuesId(ques:String): Int {
+            return ques.indexOf(ques)
+        }
 
-}}
+        fun getAllQues(): List<String> {
+            return ques
+        }
+    }
+
+}
+
