@@ -36,6 +36,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
+import com.hasan.imseducation.ui.theme.Background
+import com.hasan.imseducation.ui.theme.ButtonColor
+import com.hasan.imseducation.ui.theme.Chiqish
+import com.hasan.imseducation.ui.theme.Green
+import com.hasan.imseducation.ui.theme.blueC
 
 @Preview
 @Composable
@@ -87,47 +92,42 @@ fun Profile(navController: NavController) {
             Text(text = "@Jahongir",fontSize = 16.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(20.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier.width(300.dp)) {
                 Text(text = "Tahrirlash", fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier.width(300.dp)) {
                 Text(text = "Kurslar", fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier.width(300.dp)) {
                 Text(text = "Parol o'rnatish", fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
-                Text(text = "Kurslar", fontSize = 18.sp)
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier.width(300.dp)) {
                 Text(text = "Tilni almashtirish", fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier.width(300.dp)) {
                 Text(text = "Tungi rejimga o'tish", fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier.width(300.dp)) {
                 Text(text = "O'qtuvchi sifatida qo'shilish", fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier.width(300.dp)) {
                 Text(text = "Shikoyat va takliflar", fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.width(300.dp)) {
+                colors = ButtonDefaults.buttonColors(Chiqish), modifier = Modifier.width(300.dp)) {
                 Text(text = "Ilovadan chiqish", fontSize = 18.sp)
             }
 

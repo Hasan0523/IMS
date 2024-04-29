@@ -1,8 +1,10 @@
 package com.hasan.imseducation.screens
 
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -40,8 +43,10 @@ import com.hasan.imseducation.R
 import com.hasan.imseducation.model.Ques
 import com.hasan.imseducation.model.Subject
 import com.hasan.imseducation.model.Test
+import com.hasan.imseducation.ui.theme.Background
 import com.hasan.imseducation.ui.theme.Green
 import com.hasan.imseducation.ui.theme.OptionBg
+import com.hasan.imseducation.ui.theme.blueC
 
 @Preview
 @Composable
@@ -78,7 +83,7 @@ fun Test(navController: NavController) {
                 items(Subject.getAllSubjects()) {
                     Button(
                         onClick = { navController.navigate("TestFun/${Subject.getSubjectId(it)}") },
-                        colors = ButtonDefaults.buttonColors(Color.Blue),
+                        colors = ButtonDefaults.buttonColors(blueC),
                         modifier = Modifier.width(300.dp)
                     ) {
                         Text(text = it, fontSize = 18.sp)
@@ -124,7 +129,7 @@ fun TestFun(navController: NavController, quesId: Int) {
             items(Ques.getAllQues()) {
                 Button(
                     onClick = { navController.navigate("TestQues/${Ques.getQuesId(it)}") },
-                    colors = ButtonDefaults.buttonColors(Color.Blue),
+                    colors = ButtonDefaults.buttonColors(blueC),
                     modifier = Modifier.width(300.dp)
                 ) {
                     Text(text = it, fontSize = 18.sp)
@@ -144,98 +149,108 @@ fun TestQues(navController: NavController, quesid: Int) {
     )
     val testNumber = remember { mutableStateOf(1) }
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(modifier = Modifier.height(10.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = { }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.arrow),
-                    contentDescription = "Ortga",
-                    tint = Color.Black,
-                    modifier = Modifier.size(35.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(60.dp))
-            Text(text = "1-daraja", fontSize = 34.sp)
-            Spacer(modifier = Modifier.width(60.dp))
-            IconButton(onClick = { backDispatcher?.onBackPressed() }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.menu_vertical),
-                    contentDescription = "menu", tint = Color.Black, modifier = Modifier.size(35.dp)
-                )
-            }
-        }
-        val progress = 0.05f
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Spacer(modifier = Modifier.width(6.dp))
-            Text(text = "1", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color.Green)
-            Spacer(modifier = Modifier.width(2.dp))
-            Text(text = "/", fontSize = 24.sp)
-            Spacer(modifier = Modifier.width(2.dp))
-            Text(text = "20", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.width(10.dp))
-            LinearProgressIndicator(
-                modifier = Modifier
-                    .weight(1f)
-                    .height(10.dp),
-                color = Green,
-                progress = progress,
-                trackColor = OptionBg,
-                strokeCap = StrokeCap.Round
-            )
-            Spacer(modifier = Modifier.width(0.dp))
-            IconButton(onClick = { backDispatcher?.onBackPressed() }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.time_icon),
-                    contentDescription = "time", tint = Color.Green, modifier = Modifier.size(30.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(0.dp))
-            Text(text = "10:00", fontSize = 20.sp)
-        }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = testNumber.value.toString(),
-                fontSize = 26.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(text = " - masala", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-        }
-        Text(
-            text = test.question,
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
+    Box {
+        Image(painter = painterResource(id = R.drawable.logo), contentDescription ="", modifier = Modifier.fillMaxSize() )
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 8.dp, end = 8.dp),
-            textAlign = TextAlign.Center
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        LazyColumn {
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = { }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.arrow),
+                        contentDescription = "Ortga",
+                        tint = Color.White,
+                        modifier = Modifier.size(35.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(60.dp))
+                Text(text = "1-daraja", fontSize = 34.sp, color = Color.White)
+                Spacer(modifier = Modifier.width(60.dp))
+                IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.menu_vertical),
+                        contentDescription = "menu",
+                        tint = Color.White,
+                        modifier = Modifier.size(35.dp)
+                    )
+                }
+            }
+            val progress = 0.05f
 
-            items(test.vars) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(
+                    text = "1",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Green
+                )
+                Spacer(modifier = Modifier.width(2.dp))
+                Text(text = "/", fontSize = 24.sp, color = Color.White)
+                Spacer(modifier = Modifier.width(2.dp))
+                Text(text = "20", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                Spacer(modifier = Modifier.width(10.dp))
+                LinearProgressIndicator(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(10.dp),
+                    color = Green,
+                    progress = progress,
+                    trackColor = OptionBg,
+                    strokeCap = StrokeCap.Round
+                )
+                Spacer(modifier = Modifier.width(0.dp))
+                IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.time_icon),
+                        contentDescription = "time",
+                        tint = Color.Green,
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(0.dp))
+                Text(text = "10:00", fontSize = 22.sp, color = Color.White)
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = testNumber.value.toString(),
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(text = " - masala", fontSize = 26.sp, fontWeight = FontWeight.Bold, color = Color.White)
+            }
+            Text(
+                text = test.question,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp, end = 8.dp),
+                textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            LazyColumn {
 
-                Button(
-                    onClick = { testNumber.value++ }, modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 30.dp, end = 30.dp)
-                ) {
-                    Row (verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "A)", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = it, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                items(test.vars) {
+
+                    Button(
+                        onClick = { testNumber.value++ },
+                        colors = ButtonDefaults.buttonColors(blueC), modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 30.dp, end = 30.dp)
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = it, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        }
                     }
                 }
             }

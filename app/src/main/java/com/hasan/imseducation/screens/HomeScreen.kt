@@ -62,6 +62,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
+import com.hasan.imseducation.ui.theme.Homebac
 import com.hasan.imseducation.ui.theme.bcolor
 import com.hasan.imseducation.ui.theme.blue
 import com.hasan.imseducation.ui.theme.blue1
@@ -83,7 +84,7 @@ fun HomeScreen(navController: NavController) {
             Modifier
                 .fillMaxSize()
                 .padding(it)
-                .background(Color.White)
+                .background(Homebac)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(12.dp))
@@ -120,7 +121,7 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(20.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = White,
+                    containerColor = Homebac,
                 )
             ) {
                 Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
@@ -357,8 +358,7 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(8.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = blue2
-                )
+                    containerColor = White)
             ) {
                 Row(
                     modifier = Modifier.horizontalScroll(rememberScrollState()),
@@ -435,7 +435,7 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(8.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = blue2
+                    containerColor = White
                 )
             ) {
                 Row(
