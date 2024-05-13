@@ -15,6 +15,7 @@ sealed class Screens(val route: String) {
     data object TestFun : Screens("TestFun/{id}")
     data object TestQues : Screens("TestQues/{id}")
     data object Profile : Screens("Profile")
+    data object Menu : Screens("Menu")
 
 
 }

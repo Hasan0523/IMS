@@ -10,6 +10,7 @@ import com.hasan.imseducation.screens.Chat
 import com.hasan.imseducation.screens.ChatScreen
 import com.hasan.imseducation.screens.HomeScreen
 import com.hasan.imseducation.screens.LoginScreen
+import com.hasan.imseducation.screens.Menu
 import com.hasan.imseducation.screens.Profile
 import com.hasan.imseducation.screens.Saved
 import com.hasan.imseducation.screens.SignUp
@@ -60,6 +61,9 @@ fun NavGraph (){
         })){
             val id =it.arguments?.getInt("id")!!
            TestQues(navController,id)
+        }
+        composable(route = Screens.Menu.route){
+            Menu(navController)
         }
         composable(route = Screens.Login.route){
             LoginScreen(navController)

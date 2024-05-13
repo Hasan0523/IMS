@@ -62,6 +62,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
+import com.hasan.imseducation.navigation.Screens
 import com.hasan.imseducation.ui.theme.Homebac
 import com.hasan.imseducation.ui.theme.bcolor
 import com.hasan.imseducation.ui.theme.blue
@@ -105,11 +106,13 @@ fun HomeScreen(navController: NavController) {
                     contentScale = ContentScale.Crop
                 )
                 SearchBar()
-                Icon(
-                    painter = painterResource(id = R.drawable.menu_svgrepo_com__2_),
-                    contentDescription = "",
-                    Modifier.size(40.dp),
-                )
+              IconButton(onClick = { navController.navigate(Screens.Menu.route) }) {
+                  Icon(
+                      painter = painterResource(id = R.drawable.menu_svgrepo_com__2_),
+                      contentDescription = "",
+                      Modifier.size(40.dp),
+                  )
+              }
                 Spacer(modifier = Modifier.width(10.dp))
             }
             Row {

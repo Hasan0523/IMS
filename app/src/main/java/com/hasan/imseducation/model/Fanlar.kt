@@ -35,4 +35,21 @@ class Ques private constructor() {
     }
 
 }
+class Menu private constructor() {
+    companion object {
+        private val menu = listOf("Matematika", "Fizika", "Informatika","Ingilis tili" ,"Rus tili","Roboto texnika","Arab tili", "Kitoblar","video darslar")
+        fun getMenu(id: Int): String {
+            return menu[id]
+        }
+
+        fun getMenuId(menu:String): Int {
+            return menu.indexOf(menu)
+        }
+
+        fun getAllMenu(): List<String> {
+            return menu
+        }
+    }
+
+}
 

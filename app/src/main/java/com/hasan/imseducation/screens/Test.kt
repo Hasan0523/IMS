@@ -150,15 +150,14 @@ fun TestQues(navController: NavController, quesid: Int) {
     val testNumber = remember { mutableStateOf(1) }
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     Box {
-        Image(painter = painterResource(id = R.drawable.logo), contentDescription ="", modifier = Modifier.fillMaxSize() )
         Column(
-            modifier = Modifier
+            modifier = Modifier.background(Color.Black)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(10.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                IconButton(onClick = { }) {
+                IconButton(onClick = {backDispatcher?.onBackPressed()}) {
                     Icon(
                         painter = painterResource(id = R.drawable.arrow),
                         contentDescription = "Ortga",
@@ -169,7 +168,7 @@ fun TestQues(navController: NavController, quesid: Int) {
                 Spacer(modifier = Modifier.width(60.dp))
                 Text(text = "1-daraja", fontSize = 34.sp, color = Color.White)
                 Spacer(modifier = Modifier.width(60.dp))
-                IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                IconButton(onClick = {  }) {
                     Icon(
                         painter = painterResource(id = R.drawable.menu_vertical),
                         contentDescription = "menu",
@@ -206,7 +205,7 @@ fun TestQues(navController: NavController, quesid: Int) {
                     strokeCap = StrokeCap.Round
                 )
                 Spacer(modifier = Modifier.width(0.dp))
-                IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                IconButton(onClick = {  }) {
                     Icon(
                         painter = painterResource(id = R.drawable.time_icon),
                         contentDescription = "time",
