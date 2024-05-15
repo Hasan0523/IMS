@@ -20,7 +20,7 @@ class Subject private constructor() {
 
 class Ques private constructor() {
     companion object {
-        private val ques = listOf("1-daraja", "2-daraja", "3-daraja")
+        private val ques = listOf("1-daraja", "2-daraja", "3-daraja","4-daraja","5-daraja","6-daraja","7-daraja","8-daraja","9-daraja","10-daraja")
         fun getQues(id: Int): String {
             return ques[id]
         }
@@ -43,6 +43,7 @@ class Menu private constructor() {
         }
 
         fun getMenuId(menu:String): Int {
+            
             return menu.indexOf(menu)
         }
 

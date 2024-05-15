@@ -15,6 +15,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -62,6 +65,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hasan.imseducation.R
+import com.hasan.imseducation.model.Book
+import com.hasan.imseducation.model.OnlineLesson
+import com.hasan.imseducation.model.Teacher
+import com.hasan.imseducation.model.Video
+import com.hasan.imseducation.model.app
 import com.hasan.imseducation.navigation.Screens
 import com.hasan.imseducation.ui.theme.Homebac
 import com.hasan.imseducation.ui.theme.bcolor
@@ -78,6 +86,49 @@ fun PreviewHome() {
 
 @Composable
 fun HomeScreen(navController: NavController) {
+    val topTeachers = listOf(
+        Teacher("Hasan", "Bo'ronov", ""),
+        Teacher("Muhammadqodir", "Rustamov", ""),
+        Teacher("Hasan", "Bo'ronov", ""),
+        Teacher("Hasan", "Bo'ronov", ""),
+        Teacher("Hasan", "Bo'ronov", ""),
+        Teacher("Hasan", "Bo'ronov", ""),
+        Teacher("Hasan", "Bo'ronov", ""),
+        Teacher("Hasan", "Bo'ronov", ""),
+    )
+    val otherapps= listOf(
+        app("I.Farzandlari","") ,
+        app("I.Farzandlari","") ,
+        app("I.Farzandlari",""),
+        app("I.Farzandlari","") ,
+        app("I.Farzandlari",""),
+        app("I.Farzandlari","")
+    )
+    val Book= listOf(
+        Book("7-sinf Matematika","10",5.0,1232232,"",""),
+        Book("7-sinf Matematika","10",5.0,1232232,"",""),
+        Book("7-sinf Matematika","10",5.0,1232232,"",""),
+        Book("7-sinf Matematika","10",5.0,1232232,"",""),
+        Book("7-sinf Matematika","10",5.0,1232232,"",""),
+        Book("7-sinf Matematika","10",5.0,1232232,"",""),
+        Book("7-sinf Matematika","10",5.0,1232232,"",""),
+        Book("7-sinf Matematika","10",5.0,1232232,"",""))
+    val Video= listOf(
+        Book("6-sinf Matematika","18",5.0,12322,"",""),
+        Book("6-sinf Matematika","18",5.0,12322,"",""),
+        Book("6-sinf Matematika","18",5.0,12322,"",""),
+        Book("6-sinf Matematika","18",5.0,12322,"",""),
+        Book("6-sinf Matematika","18",5.0,12322,"",""),
+        Book("6-sinf Matematika","18",5.0,12322,"",""),
+        Book("6-sinf Matematika","18",5.0,12322,"",""),
+        Book("6-sinf Matematika","18",5.0,12322,"",""))
+    val OnlineLesson= listOf(
+        OnlineLesson("6-sinf Matematika","18",12322,"",""),
+        OnlineLesson("6-sinf Matematika","18",12322,"",""),
+        OnlineLesson("6-sinf Matematika","18",12322,"",""),
+        OnlineLesson("6-sinf Matematika","18",12322,"",""),
+        OnlineLesson("6-sinf Matematika","18",12322,"",""),
+    )
     Scaffold(bottomBar = {
         BottomNavigationComponent(navController)
     }) {
@@ -99,25 +150,25 @@ fun HomeScreen(navController: NavController) {
                     painter = painterResource(id = R.drawable.img),
                     contentDescription = "",
                     modifier = Modifier
-                        //                    .padding(vertical = 22.dp, horizontal = 12.dp)
+                        //.padding(vertical = 22.dp, horizontal = 12.dp)
                         .size(60.dp)
                         .clip(CircleShape)
                         .clickable { },
                     contentScale = ContentScale.Crop
                 )
                 SearchBar()
-              IconButton(onClick = { navController.navigate(Screens.Menu.route) }) {
-                  Icon(
-                      painter = painterResource(id = R.drawable.menu_svgrepo_com__2_),
-                      contentDescription = "",
-                      Modifier.size(40.dp),
-                  )
-              }
+                IconButton(onClick = { navController.navigate(Screens.Menu.route) }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.menu_svgrepo_com__2_),
+                        contentDescription = "",
+                        Modifier.size(40.dp),
+                    )
+                }
                 Spacer(modifier = Modifier.width(10.dp))
             }
             Row {
                 Spacer(modifier = Modifier.width(12.dp))
-                Text(text = "Boshqa ilovalar", fontSize = 20.sp, )
+                Text(text = "Boshqa ilovalar", fontSize = 20.sp)
             }
             Card(
                 modifier = Modifier
@@ -127,110 +178,26 @@ fun HomeScreen(navController: NavController) {
                     containerColor = Homebac,
                 )
             ) {
-                Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.ibrat),
-                            contentDescription = "",
-                            Modifier
-                                .size(90.dp)
-                                .clip(
-                                    CircleShape
-                                ),
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = "Ibrat Farzandlari", fontSize = 16.sp)
-                        Spacer(modifier = Modifier.height(4.dp))
+                LazyRow {
+                    items(otherapps) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Image(
+                                painter = painterResource(id = R.drawable.ibrat),
+                                contentDescription = "",
+                                Modifier
+                                    .padding(horizontal = 16.dp)
+                                    .size(70.dp)
+                                    .clip(
+                                        CircleShape
+                                    ),
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(text = it.name, fontSize = 16.sp)
+                            Spacer(modifier = Modifier.height(4.dp))
 
+                        }
                     }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.ibrat),
-                            contentDescription = "",
-                            Modifier
-                                .size(90.dp)
-                                .clip(
-                                    CircleShape
-                                ),
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = "Ibrat Farzandlari", fontSize = 16.sp)
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.ibrat),
-                            contentDescription = "",
-                            Modifier
-                                .size(90.dp)
-                                .clip(
-                                    CircleShape
-                                ),
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = "Ibrat Farzandlari", fontSize = 16.sp)
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.ibrat),
-                            contentDescription = "",
-                            Modifier
-                                .size(90.dp)
-                                .clip(
-                                    CircleShape
-                                ),
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = "Ibrat Farzandlari", fontSize = 16.sp)
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.ibrat),
-                            contentDescription = "",
-                            Modifier
-                                .size(90.dp)
-                                .clip(
-                                    CircleShape
-                                ),
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = "Ibrat Farzandlari", fontSize = 16.sp)
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.ibrat),
-                            contentDescription = "",
-                            Modifier
-                                .size(90.dp)
-                                .clip(
-                                    CircleShape
-                                ),
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(text = "Ibrat Farzandlari", fontSize = 16.sp)
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                    }
-
                 }
 
             }
@@ -244,194 +211,38 @@ fun HomeScreen(navController: NavController) {
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
-            Row(
-                modifier = Modifier.horizontalScroll(rememberScrollState()),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        modifier = Modifier
-                            //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .clickable { },
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "J.O'rozboyev", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        modifier = Modifier
-                            //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .clickable { },
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "J.O'rozboyev", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        modifier = Modifier
-                            //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .clickable { },
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "J.O'rozboyev", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        modifier = Modifier
-                            //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .clickable { },
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "J.O'rozboyev", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        modifier = Modifier
-                            //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .clickable { },
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "J.O'rozboyev", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        modifier = Modifier
-                            //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .clickable { },
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "J.O'rozboyev", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img),
-                        contentDescription = "",
-                        modifier = Modifier
-                            //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .clickable { },
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "J.O'rozboyev", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                }
-
-
-            }
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = White)
-            ) {
-                Row(
-                    modifier = Modifier.horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(12.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = blue1
-                        )
-                    ) {
+            LazyRow {
+                items(topTeachers) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Image(
-                            painter = painterResource(id = R.drawable.img_2),
-                            contentDescription = "", modifier = Modifier
-                                //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                                .height(110.dp)
-                                .width(140.dp)
-                                .clip(RoundedCornerShape(percent = 14))
+                            painter = painterResource(id = R.drawable.img),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .padding(vertical = 22.dp, horizontal = 8.dp)
+                                .size(80.dp)
+                                .clip(CircleShape)
                                 .clickable { },
                             contentScale = ContentScale.Crop
                         )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = it.firstName.first() + "." + it.lastName,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
                     }
 
-                    Column(verticalArrangement = Arrangement.Center) {
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(text = "7-sinf matematika", fontSize = 22.sp)
-                        Spacer(modifier = Modifier.height(6.dp))
-                        Row(verticalAlignment = Alignment.Bottom) {
-                            Text(text = "10 $", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = "15 $",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                style = TextStyle(textDecoration = TextDecoration.LineThrough)
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(6.dp))
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-
-                            Icon(
-                                painter = painterResource(id = R.drawable.star_icon),
-                                contentDescription = "", tint = Color.Yellow,
-                                modifier = Modifier.size(24.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(text = "5.0", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Icon(
-                                painter = painterResource(id = R.drawable.bookmark_svgrepo_com),
-                                contentDescription = "", tint = bcolor,
-                                modifier = Modifier.size(20.dp)
-                            )
-                            Spacer(modifier = Modifier.width(2.dp))
-                            Text(text = "9.789", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                            Spacer(modifier = Modifier.width(16.dp))
-                            Icon(
-                                painter = painterResource(id = R.drawable.bookmark_svgrepo_com__1_),
-                                contentDescription = "",
-                                tint = Black,
-                                modifier = Modifier.size(32.dp)
-                            )
-
-                        }
-
-                    }
                 }
-
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "Kitoblar",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic
+                )
             }
             Card(
                 modifier = Modifier
@@ -441,75 +252,261 @@ fun HomeScreen(navController: NavController) {
                     containerColor = White
                 )
             ) {
-                Row(
-                    modifier = Modifier.horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(12.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = blue1
-                        )
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.video_darslar),
-                            contentDescription = "", modifier = Modifier
-                                //                    .padding(vertical = 22.dp, horizontal = 12.dp)
-                                .height(110.dp)
-                                .width(140.dp)
-                                .clip(RoundedCornerShape(percent = 14))
-                                .clickable { },
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-
-                    Column(verticalArrangement = Arrangement.Center) {
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(text = "7-sinf matematika", fontSize = 22.sp)
-                        Spacer(modifier = Modifier.height(6.dp))
-                        Row(verticalAlignment = Alignment.Bottom) {
-                            Text(text = "10 $", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = "15 $",
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                style = TextStyle(textDecoration = TextDecoration.LineThrough)
+                LazyRow {
+                    items(Book) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(22.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = blue1
+                            )
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.img_2),
+                                contentDescription = "", modifier = Modifier
+                                    //.padding(vertical = 22.dp, horizontal = 12.dp)
+                                    .height(110.dp)
+                                    .width(140.dp)
+                                    .clip(RoundedCornerShape(percent = 14))
+                                    .clickable { },
+                                contentScale = ContentScale.Crop
                             )
                         }
-                        Spacer(modifier = Modifier.height(6.dp))
-                        Row(verticalAlignment = Alignment.CenterVertically) {
 
-                            Icon(
-                                painter = painterResource(id = R.drawable.star_icon),
-                                contentDescription = "", tint = Color.Yellow,
-                                modifier = Modifier.size(24.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(text = "5.0", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Icon(
-                                painter = painterResource(id = R.drawable.bookmark_svgrepo_com),
-                                contentDescription = "", tint = bcolor,
-                                modifier = Modifier.size(20.dp)
-                            )
-                            Spacer(modifier = Modifier.width(2.dp))
-                            Text(text = "10.789", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                            Spacer(modifier = Modifier.width(16.dp))
-                            Icon(
-                                painter = painterResource(id = R.drawable.bookmark_svgrepo_com__1_),
-                                contentDescription = "", tint = Black,
-                                modifier = Modifier.size(32.dp)
-                            )
+                        Column(verticalArrangement = Arrangement.Center) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(text = it.name, fontSize = 22.sp)
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Row(verticalAlignment = Alignment.Bottom) {
+                                Text(
+                                    text = it.price + "$",
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+
+                                Icon(
+                                    painter = painterResource(id = R.drawable.star_icon),
+                                    contentDescription = "", tint = Color.Yellow,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = it.rating.toString(),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Icon(
+                                    painter = painterResource(id = R.drawable.bookmark_svgrepo_com),
+                                    contentDescription = "", tint = bcolor,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.width(2.dp))
+                                Text(
+                                    text = it.enrollment.toString(),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(16.dp))
+                                Icon(
+                                    painter = painterResource(id = R.drawable.bookmark_svgrepo_com__1_),
+                                    contentDescription = "",
+                                    tint = Black,
+                                    modifier = Modifier.size(32.dp)
+                                )
+
+                            }
 
                         }
-
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "Video darslar",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic
+                )
+            }
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = White
+                )
+            ) {
+                LazyRow {
+                    items(Video) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(22.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = blue1
+                            )
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.video_darslar),
+                                contentDescription = "", modifier = Modifier
+                                    //.padding(vertical = 22.dp, horizontal = 12.dp)
+                                    .height(110.dp)
+                                    .width(140.dp)
+                                    .clip(RoundedCornerShape(percent = 14))
+                                    .clickable { },
+                                contentScale = ContentScale.Crop
+                            )
+                        }
 
+                        Column(verticalArrangement = Arrangement.Center) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(text = it.name, fontSize = 22.sp)
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Row(verticalAlignment = Alignment.Bottom) {
+                                Text(
+                                    text = it.price + "$",
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                            }
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+
+                                Icon(
+                                    painter = painterResource(id = R.drawable.star_icon),
+                                    contentDescription = "", tint = Color.Yellow,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = it.rating.toString(),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Icon(
+                                    painter = painterResource(id = R.drawable.bookmark_svgrepo_com),
+                                    contentDescription = "", tint = bcolor,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.width(2.dp))
+                                Text(
+                                    text = it.enrollment.toString(),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(16.dp))
+                                Icon(
+                                    painter = painterResource(id = R.drawable.bookmark_svgrepo_com__1_),
+                                    contentDescription = "", tint = Black,
+                                    modifier = Modifier.size(32.dp)
+                                )
+
+                            }
+
+                        }
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "Video darslar",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic
+                )
+            }
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = White
+                )
+            ) {
+                LazyRow {
+                    items(Video) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(22.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = blue1
+                            )
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.video_darslar),
+                                contentDescription = "", modifier = Modifier
+                                    //.padding(vertical = 22.dp, horizontal = 12.dp)
+                                    .height(110.dp)
+                                    .width(140.dp)
+                                    .clip(RoundedCornerShape(percent = 14))
+                                    .clickable { },
+                                contentScale = ContentScale.Crop
+                            )
+                        }
+
+                        Column(verticalArrangement = Arrangement.Center) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(text = it.name, fontSize = 22.sp)
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Row(verticalAlignment = Alignment.Bottom) {
+                                Text(
+                                    text = it.price + "$",
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                            }
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+
+                                Icon(
+                                    painter = painterResource(id = R.drawable.star_icon),
+                                    contentDescription = "", tint = Color.Yellow,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = it.rating.toString(),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Icon(
+                                    painter = painterResource(id = R.drawable.bookmark_svgrepo_com),
+                                    contentDescription = "", tint = bcolor,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.width(2.dp))
+                                Text(
+                                    text = it.enrollment.toString(),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(16.dp))
+                                Icon(
+                                    painter = painterResource(id = R.drawable.bookmark_svgrepo_com__1_),
+                                    contentDescription = "", tint = Black,
+                                    modifier = Modifier.size(32.dp)
+                                )
+
+                            }
+
+                        }
+                    }
+                }
+            }
         }
     }
 
