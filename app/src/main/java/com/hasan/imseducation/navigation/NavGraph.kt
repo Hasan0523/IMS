@@ -57,9 +57,9 @@ fun NavGraph (){
          TestFun(navController, id)
         }
         composable(route = Screens.TestQues.route, arguments = listOf(navArgument("id"){
-            type= NavType.IntType
+            type= NavType.StringType
         })){
-            val id =it.arguments?.getInt("id")!!
+            val id =it.arguments?.getString("id")!!
            TestQues(navController,id)
         }
         composable(route = Screens.Menu.route){

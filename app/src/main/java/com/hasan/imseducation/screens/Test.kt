@@ -1,7 +1,6 @@
 package com.hasan.imseducation.screens
 
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,7 +29,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -43,7 +41,6 @@ import com.hasan.imseducation.R
 import com.hasan.imseducation.model.Ques
 import com.hasan.imseducation.model.Subject
 import com.hasan.imseducation.model.Test
-import com.hasan.imseducation.ui.theme.Background
 import com.hasan.imseducation.ui.theme.Green
 import com.hasan.imseducation.ui.theme.OptionBg
 import com.hasan.imseducation.ui.theme.blueC
@@ -51,7 +48,7 @@ import com.hasan.imseducation.ui.theme.blueC
 @Preview
 @Composable
 fun PreviewTest() {
-    TestQues(navController = rememberNavController(), 2)
+    TestFun(navController = rememberNavController(), 2)
 }
 
 @Composable
@@ -95,7 +92,7 @@ fun Test(navController: NavController) {
 }
 
 @Composable
-fun TestFun(navController: NavController, quesId: Int) {
+fun TestFun(navController: NavController, subjectId: Int) {
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     Column(
         modifier = Modifier
@@ -112,7 +109,7 @@ fun TestFun(navController: NavController, quesId: Int) {
             }
             Spacer(modifier = Modifier.width(40.dp))
             Text(
-                text = Ques.getQues(quesId),
+                text = Subject.getSubject(subjectId),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -128,7 +125,7 @@ fun TestFun(navController: NavController, quesId: Int) {
         LazyColumn {
             items(Ques.getAllQues()) {
                 Button(
-                    onClick = { navController.navigate("TestQues/${Ques.getQuesId(it)}") },
+                    onClick = { navController.navigate("TestQues/$it") },
                     colors = ButtonDefaults.buttonColors(blueC),
                     modifier = Modifier.width(300.dp)
                 ) {
@@ -141,7 +138,7 @@ fun TestFun(navController: NavController, quesId: Int) {
 }
 
 @Composable
-fun TestQues(navController: NavController, quesid: Int) {
+fun TestQues(navController: NavController, quesId: String) {
     val test = Test(
         "Fizikani birinchi bo'lib harbiy sohada qo'llagan inson qayerlik bo'lgan",
         listOf("Amerika", "Germaniya", "Rim", "Sitsilya"),
@@ -156,8 +153,8 @@ fun TestQues(navController: NavController, quesid: Int) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(10.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                IconButton(onClick = {backDispatcher?.onBackPressed()}) {
+            Row(Modifier.fillMaxWidth(),verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                IconButton(onClick = {backDispatcher?.onBackPressed()},Modifier.padding(start = 8.dp)) {
                     Icon(
                         painter = painterResource(id = R.drawable.arrow),
                         contentDescription = "Ortga",
@@ -165,23 +162,22 @@ fun TestQues(navController: NavController, quesid: Int) {
                         modifier = Modifier.size(35.dp)
                     )
                 }
-                Spacer(modifier = Modifier.width(60.dp))
-                Text(text = "1-daraja", fontSize = 34.sp, color = Color.White)
-                Spacer(modifier = Modifier.width(60.dp))
+
+                Text(text = quesId, fontSize = 34.sp, color = Color.White)
                 IconButton(onClick = {  }) {
                     Icon(
                         painter = painterResource(id = R.drawable.menu_vertical),
                         contentDescription = "menu",
                         tint = Color.White,
-                        modifier = Modifier.size(35.dp)
+                        modifier = Modifier.padding(end = 8.dp).size(35.dp)
                     )
                 }
             }
             val progress = 0.05f
 
-            Row(
+            Row(Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement =Arrangement.SpaceBetween
             ) {
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(

@@ -87,7 +87,7 @@ fun PreviewHome() {
 @Composable
 fun HomeScreen(navController: NavController) {
     val topTeachers = listOf(
-        Teacher("Hasan", "Bo'ronov", ""),
+        Teacher("Hasan", "Bo'ronov", "",),
         Teacher("Muhammadqodir", "Rustamov", ""),
         Teacher("Hasan", "Bo'ronov", ""),
         Teacher("Hasan", "Bo'ronov", ""),
@@ -114,20 +114,20 @@ fun HomeScreen(navController: NavController) {
         Book("7-sinf Matematika","10",5.0,1232232,"",""),
         Book("7-sinf Matematika","10",5.0,1232232,"",""))
     val Video= listOf(
-        Book("6-sinf Matematika","18",5.0,12322,"",""),
-        Book("6-sinf Matematika","18",5.0,12322,"",""),
-        Book("6-sinf Matematika","18",5.0,12322,"",""),
-        Book("6-sinf Matematika","18",5.0,12322,"",""),
-        Book("6-sinf Matematika","18",5.0,12322,"",""),
-        Book("6-sinf Matematika","18",5.0,12322,"",""),
-        Book("6-sinf Matematika","18",5.0,12322,"",""),
-        Book("6-sinf Matematika","18",5.0,12322,"",""))
+        Video("6-sinf Matematika","18",5.0,12322,"",""),
+        Video("5-sinf Matematika","18",5.0,12322,"",""),
+        Video("7-sinf Matematika","18",5.0,12322,"",""),
+        Video("8-sinf Matematika","18",5.0,12322,"",""),
+        Video("9-sinf Matematika","18",5.0,12322,"",""),
+        Video("10-sinf Matematika","18",5.0,12322,"",""),
+        Video("11-sinf Matematika","18",5.0,12322,"",""),
+        Video("Tengsizlik","18",5.0,12322,"",""))
     val OnlineLesson= listOf(
-        OnlineLesson("6-sinf Matematika","18",12322,"",""),
-        OnlineLesson("6-sinf Matematika","18",12322,"",""),
-        OnlineLesson("6-sinf Matematika","18",12322,"",""),
-        OnlineLesson("6-sinf Matematika","18",12322,"",""),
-        OnlineLesson("6-sinf Matematika","18",12322,"",""),
+        OnlineLesson("Tengsizliklar","15",1222,"",""),
+        OnlineLesson("Olimpiadaga tayyorgarlik","15",1222,"",""),
+        OnlineLesson("Geometriya","15",1222,"",""),
+        OnlineLesson("Sonlar nazariyasi","15",1222,"",""),
+        OnlineLesson("Butun sonlar","16",1222,"",""),
     )
     Scaffold(bottomBar = {
         BottomNavigationComponent(navController)
@@ -213,7 +213,9 @@ fun HomeScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             LazyRow {
                 items(topTeachers) {
+                    Spacer(modifier = Modifier.width(24.dp))
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                         Image(
                             painter = painterResource(id = R.drawable.img),
                             contentDescription = "",
@@ -379,12 +381,12 @@ fun HomeScreen(navController: NavController) {
                             }
                             Spacer(modifier = Modifier.height(6.dp))
                             Row(verticalAlignment = Alignment.CenterVertically) {
-
                                 Icon(
                                     painter = painterResource(id = R.drawable.star_icon),
                                     contentDescription = "", tint = Color.Yellow,
                                     modifier = Modifier.size(24.dp)
                                 )
+
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(
                                     text = it.rating.toString(),
@@ -420,7 +422,7 @@ fun HomeScreen(navController: NavController) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Video darslar",
+                    text = "Onlayn darslar",
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic
@@ -435,7 +437,7 @@ fun HomeScreen(navController: NavController) {
                 )
             ) {
                 LazyRow {
-                    items(Video) {
+                    items(OnlineLesson) {
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -471,18 +473,9 @@ fun HomeScreen(navController: NavController) {
                             Spacer(modifier = Modifier.height(6.dp))
                             Row(verticalAlignment = Alignment.CenterVertically) {
 
-                                Icon(
-                                    painter = painterResource(id = R.drawable.star_icon),
-                                    contentDescription = "", tint = Color.Yellow,
-                                    modifier = Modifier.size(24.dp)
-                                )
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Text(
-                                    text = it.rating.toString(),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
-                                Spacer(modifier = Modifier.width(12.dp))
+
+
+
                                 Icon(
                                     painter = painterResource(id = R.drawable.bookmark_svgrepo_com),
                                     contentDescription = "", tint = bcolor,

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -61,15 +62,14 @@ fun Profile(navController: NavController) {
                 .background(Color.White), horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(12.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(Modifier.fillMaxWidth(),verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                 Image(painter = painterResource(id = R.drawable.logo),
                     contentDescription = "",
                     contentScale = ContentScale.FillHeight,
-                    modifier = Modifier
+                    modifier = Modifier.padding(start = 10.dp)
                         .size(70.dp)
                         .clip(CircleShape)
                         .clickable { })
-                Spacer(modifier = Modifier.width(30.dp))
                 Image(painter = painterResource(id = R.drawable.img),
                     contentDescription = "",
                     contentScale = ContentScale.FillHeight,
@@ -77,11 +77,10 @@ fun Profile(navController: NavController) {
                         .size(100.dp)
                         .clip(CircleShape)
                         .clickable { })
-                Spacer(modifier = Modifier.width(30.dp))
                 Image(painter = painterResource(id = R.drawable.ibrat),
                     contentDescription = "",
                     contentScale = ContentScale.FillHeight,
-                    modifier = Modifier
+                    modifier = Modifier.padding(end = 10.dp)
                         .size(70.dp)
                         .clip(CircleShape)
                         .clickable { })
